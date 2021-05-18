@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-
 class HornedBeast extends React.Component {
 
     // constructor(props) {
@@ -26,22 +25,28 @@ class HornedBeast extends React.Component {
         })
     }
 
+    callShowModel =()=>{
+        this.props.showModel();
+    }
     render() {
         return (
+            <div  onClick={this.props.handleShow}>
 
-    <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={this.props.image_url} alt={this.props.title}/>
-          <Card.Body>
-            <Card.Title>{this.props.title}</Card.Title>
-            <Card.Text>
-              {this.props.description}
-            </Card.Text>
-          </Card.Body>
-          <Card.Text>Number of votes : {this.state.numberOfVotes} </Card.Text>
-          <Button variant="primary"  onClick={this.numOfVotes}>Votes</Button>
-          
-        </Card>
-        
+                <Card key={this.props.indx} style={{ width: '18rem' }}>
+                    <Card.Img variant="top" src={this.props.image_url} alt={this.props.title} />
+                    <Card.Body>
+                        <Card.Title>{this.props.title}</Card.Title>
+                        <Card.Text>
+                            {this.props.description}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Text>Number of votes : {this.state.numberOfVotes} </Card.Text>
+                    <Button variant="primary" onClick={this.numOfVotes}>Votes</Button>
+
+                </Card>
+
+            </div>
+ 
             // <div><p>{this.props.title}</p>
             //     <img src={this.props.image_url} alt={this.props.title} />
             //     <p>{this.props.description}</p>
