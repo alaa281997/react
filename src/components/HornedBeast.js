@@ -12,28 +12,31 @@ class HornedBeast extends React.Component {
     //         imgUrl: sherry
     //     }
     // }
+
     constructor(props) {
         super(props);
         this.state = {
             numberOfVotes: 0,
         }
     }
+  
 
-    numOfVotes = () => {
+    numberOfVotes = () => {
         this.setState({
             numberOfVotes: this.state.numberOfVotes + 1,
         })
     }
-
-    callShowModel =()=>{
-        this.props.showModel();
+    getArray=()=>{
+        this.props.getArr(this.props.title)
     }
+ 
+
     render() {
         return (
             <div  >
 
                 <Card key={this.props.indx} style={{ width: '18rem' }}>
-                    <Card.Img onClick={this.props.handleShow} variant="top" src={this.props.image_url} alt={this.props.title} />
+                    <Card.Img onClick={this.getArray} variant="top" src={this.props.imageUrl} alt={this.props.title} />
                     <Card.Body>
                         <Card.Title>{this.props.title}</Card.Title>
                         <Card.Text>
@@ -41,26 +44,17 @@ class HornedBeast extends React.Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Text>Number of votes : {this.state.numberOfVotes} </Card.Text>
-                    <Button variant="primary" onClick={this.numOfVotes}>Votes</Button>
+                    <Button variant="primary" onClick={this.numberOfVotes}>Votes</Button>
 
                 </Card>
+              
 
             </div>
  
-            // <div><p>{this.props.title}</p>
-            //     <img src={this.props.image_url} alt={this.props.title} />
-            //     <p>{this.props.description}</p>
-            //     <p> Number of votes :{this.state.numberOfVotes}</p>
-            //     <button onClick={this.numOfVotes}>Votes</button>
-            // </div>
-
-
-
-
-
 
         )
     }
 }
 
 export default HornedBeast;
+
