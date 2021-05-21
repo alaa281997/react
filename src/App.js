@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Headerss from './components/Headerss';
 import Main from './components/Main';
@@ -30,8 +31,8 @@ class App extends React.Component {
       })
     }
   
-  getArray=(title)=>{
-  const  myarr= data.find(val=>{
+  getArr=(title)=>{
+  const myarr= data.find(val=>{
   
     if (val.title === title) {
       return val;
@@ -50,7 +51,7 @@ class App extends React.Component {
     return (
       <div>
         <Headerss/>
-        <Main data={this.state.data}  handleShow={this.handleShow}getArr={this.getArray}   />
+        <Main data={this.state.data}  handleShow={this.handleShow}getArr={this.getArr}   />
         <Footer/>
         <SelectedBeast  show={this.state.show} handleClose={this.handleClose}  myarr={this.state.myarr} />
       </div>
