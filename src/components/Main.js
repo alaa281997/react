@@ -1,48 +1,65 @@
 import React from 'react';
 import HornedBeast from './HornedBeast';
 import data from './data.json';
-import SelectedBeast from './SelectedBeast';
+import Form from 'react-bootstrap/Form'
+
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
            data: data,
-            show : false 
+           filterData : data
         }
     }
    
-     setShow = (active) => {
-         this.setState ({
-             show : active 
-         })
-    }
-         handleClose = () => this.setShow(false);
-         handleShow = () => this.setShow(true);
+  
 
-    render() {
+    showHorns = (e) => {
+       let arrayFilter = data.filter(ele =>{
+           if (ele.horns == e.target.value){
+                return ele
+           }
+           if (e.target.value == 'All'){
+               return ele
+           }
+       }
+       
+     
+       )
+       this.setState({
+        filterData : arrayFilter
+      })
+    }
+
+   render() {
         return (
             <>
-                {
-                    data.map((item,indx) => {
-                        return (
-                            <HornedBeast
-                                title={item.title}
-                                image_url={item.image_url}
-                                handleShow = {this.handleShow}
-                                description= {item.description}
-                                indx = {indx}
-                           
-                            />
-                        )
-                    })
-                }
-                <SelectedBeast
-                    beastArr={this.state.data}
-                    handleClose = {this.handleClose}
-                    handleShow = {this.handleShow}
-                    show = {this.state.show}
-                />
-                
+
+                <Form >
+                    <Form.Group controlId="exampleForm.SelectCustomHtmlSize">
+                        <Form.Label>Filter By Number Of Horns </Form.Label>
+                        <Form.Control as="select" custom name='Horns' onChange={this.showHorns}>
+                            <option value='All'>All</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='100'>Wow</option>
+                        </Form.Control>
+                    </Form.Group>
+                </Form>
+                {this.state.filterData.map((item, index) => {
+            return (
+              <HornedBeast
+                title={item.title}
+                imageUrl={item.image_url}
+                descreption={item.description}
+                getArr={this.props.getArr}
+                key={index}
+              />
+            )
+          })
+          }
+
             </>
         )
     }

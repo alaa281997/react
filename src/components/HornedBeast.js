@@ -4,63 +4,36 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 class HornedBeast extends React.Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         name: 'Sherry',
-    //         imgUrl: sherry
-    //     }
-    // }
     constructor(props) {
         super(props);
         this.state = {
-            numberOfVotes: 0,
+            numberOfvoets: 0,
         }
     }
+   
 
-    numOfVotes = () => {
+    votesCount = () => {
         this.setState({
-            numberOfVotes: this.state.numberOfVotes + 1,
+      numberOfvoets: this.state.numberOfvoets+1,
         })
     }
-
-    callShowModel =()=>{
-        this.props.showModel();
+    getArray=()=>{
+        this.props.getArr(this.props.title)
     }
     render() {
         return (
-            <div  onClick={this.props.handleShow}>
-
-                <Card key={this.props.indx} style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={this.props.image_url} alt={this.props.title} />
-                    <Card.Body>
-                        <Card.Title>{this.props.title}</Card.Title>
-                        <Card.Text>
-                            {this.props.description}
-                        </Card.Text>
-                    </Card.Body>
-                    <Card.Text>Number of votes : {this.state.numberOfVotes} </Card.Text>
-                    <Button variant="primary" onClick={this.numOfVotes}>Votes</Button>
-
+          <> 
+                <Card onClick={this.getArray} style={{ width: '18rem' }}>
+                <Card.Img    variant="top" src={this.props.imageUrl} />
+                <Card.Body>
+                    <Card.Title>{this.props.title}</Card.Title>
+                    <Card.Text>{this.props.descreption}</Card.Text>
+                    <Card.Text>number votes: {this.state. numberOfvoets}</Card.Text>
+                    <Button onClick={this.votesCount} variant="primary"> Vote  </Button>
+                </Card.Body>
                 </Card>
-
-            </div>
- 
-            // <div><p>{this.props.title}</p>
-            //     <img src={this.props.image_url} alt={this.props.title} />
-            //     <p>{this.props.description}</p>
-            //     <p> Number of votes :{this.state.numberOfVotes}</p>
-            //     <button onClick={this.numOfVotes}>Votes</button>
-            // </div>
-
-
-
-
-
-
+            </>
         )
     }
 }
-
 export default HornedBeast;
